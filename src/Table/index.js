@@ -1,6 +1,13 @@
 import Form from "../Form";
-import uuid from 'react-uuid';
+import uuid from "react-uuid";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
+
+const pencil = <FontAwesomeIcon icon={faPencilAlt} />;
+const close = <FontAwesomeIcon icon={faWindowClose} />;
 
 const Table = () => {
   const [table, setTable] = useState([]);
@@ -50,69 +57,79 @@ const Table = () => {
   };
 
   return (
-    
-    <div style={{width:'500px', margin:'10px 60px' }}>
+    <div style={{ width: "500px",  margin: "10px 60px" }}>
       <Form onAddRow={onAddRow} />
-      <div className="table" style={{textAlign:"center", margin:'20px auto', borderRadius:"15px"}}>
-        <table>
-        <thead>
-              <tr className = "row" style={{border:"none"}}>
-                <th
-                  scope="col"
-                  align="center"
-                  className = "col"
-                  style={{width:"120px"}}
-                
-                >
-                  Дата
-                </th>
-                <th
-                  scope="col"
-                  align="center"
-                  className = "col"
-                  style={{width:"120px"}}
-                
-                >
-                  Расстояние
-                </th>
-                <th
-                  scope="col"
-                  align="center"
-                  className = "col"
-                  style={{width:"120px"}}
-                 
-                >
-                  Изменить
-                </th>
-                <th
-                  scope="col"
-                  align="center"
-                  className = "col"
-                  style={{width:"120px"}}
-                
-                >
-                  Удалить
-                </th>
-              </tr>
-            </thead>
+      <div
+        className="table"
+        style={{
+          textAlign: "center",
+          margin: "20px auto",
+          borderRadius: "15px",
+          height:"80vh"
+        }}
+      >
+        <table >
+          <thead>
+            <tr className="row" style={{ border: "none" }}>
+              <th
+                scope="col"
+                align="center"
+                className="col"
+                style={{ width: "120px" }}
+              >
+                Дата
+              </th>
+              <th
+                scope="col"
+                align="center"
+                className="col"
+                style={{ width: "120px" }}
+              >
+                Расстояние
+              </th>
+              <th
+                scope="col"
+                align="center"
+                className="col"
+                style={{ width: "120px" }}
+              >
+                Изменить
+              </th>
+              <th
+                scope="col"
+                align="center"
+                className="col"
+                style={{ width: "120px" }}
+              >
+                Удалить
+              </th>
+            </tr>
+          </thead>
           <tbody>
             {table.map((item) => (
-              <tr  className = "row" style={{display:'flex', border:"none"}}key={item.id}>
-                <td  className = "col" style={{width:"120px"}}>{item.date}</td>
-                <td  className = "col" style={{width:"120px"}}>{item.km} км</td>
-                <td  className = "col" style={{width:"120px"}}>
-                  <button onClick={onEditRow}>edit</button>
+              <tr
+                className="row"
+                style={{ display: "flex", border: "none" }}
+                key={item.id}
+              >
+                <td className="col" style={{ width: "120px" }}>
+                  {moment(item.date).format("DD/MM/YYYY")}
                 </td>
-                <td  className = "col" style={{width:"120px"}}>
-                  <button onClick={() => onDeleteRow(item.id)}>x</button>
+                <td className="col" style={{ width: "120px" }}>
+                  {item.km} км
+                </td>
+                <td className="col" style={{ width: "120px" }}>
+                  <button onClick={onEditRow}>{pencil}</button>
+                </td>
+                <td className="col" style={{ width: "120px" }}>
+                  <button onClick={() => onDeleteRow(item.id)}>{close}</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      </div>
-      
+    </div>
   );
 };
 
