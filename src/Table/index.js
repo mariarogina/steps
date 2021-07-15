@@ -6,6 +6,7 @@ import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 
+
 const pencil = <FontAwesomeIcon icon={faPencilAlt} />;
 const close = <FontAwesomeIcon icon={faWindowClose} />;
 
@@ -57,7 +58,7 @@ const Table = () => {
   };
 
   return (
-    <div style={{ width: "500px",  margin: "10px 60px" }}>
+    <div style={{ width: "500px", margin: "10px 60px" }}>
       <Form onAddRow={onAddRow} />
       <div
         className="table"
@@ -65,10 +66,10 @@ const Table = () => {
           textAlign: "center",
           margin: "20px auto",
           borderRadius: "15px",
-          height:"80vh"
+          height: "80vh",
         }}
       >
-        <table >
+        <table>
           <thead>
             <tr className="row" style={{ border: "none" }}>
               <th
@@ -132,5 +133,7 @@ const Table = () => {
     </div>
   );
 };
+
+
 
 export default Table;
